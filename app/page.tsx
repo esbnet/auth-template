@@ -1,5 +1,9 @@
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 export default function Home() {
-  return <Button className="text-red-500 font-semibold">Hello</Button>;
+  useEffect(() => {
+    console.log("Hello");
+  }, []);
+  return <Button size="lg">Hello</Button>;
 }
