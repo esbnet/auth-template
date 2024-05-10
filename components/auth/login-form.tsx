@@ -12,6 +12,8 @@ import { FormError } from "@/components/auth/form-error";
 import { FormSuccess } from "@/components/auth/form-success";
 import { Button } from "@/components/ui/button";
 
+import { ImSpinner3 } from "react-icons/im";
+
 import {
   Form,
   FormControl,
@@ -104,7 +106,7 @@ export const LoginForm = () => {
           <FormSuccess message={success} />
 
           <Button disabled={isPending} type="submit" className="w-full">
-            Entrar
+            {isPending ? <ImSpinner3 className="animate-spin" /> : "Entrar"}
           </Button>
         </form>
       </Form>
