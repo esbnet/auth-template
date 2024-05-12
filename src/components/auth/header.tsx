@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/src/lib/utils";
 import { Poppins } from "next/font/google";
 import { PiLockKeyDuotone } from "react-icons/pi";
 const font = Poppins({ subsets: ["latin"], weight: ["600"] });
