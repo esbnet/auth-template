@@ -19,14 +19,14 @@ export default auth((req) => {
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
   if (isApiAuthRoute) {
-    return new Response(null, { status: 401 });
+    return;
   }
 
   if (isAuthRoute) {
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
     }
-    return new Response(null, { status: 401 });
+    return;
   }
 
   if (!isLoggedIn && !isPublicRoute) {
