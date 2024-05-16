@@ -16,6 +16,8 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
 
   const { email, password } = validatedFields.data;
 
+  console.log("*** DADOS login(): ", email, password, DEFAULT_LOGIN_REDIRECT);
+
   try {
     await signIn("credentials", {
       email,
@@ -28,10 +30,9 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         case "CredentialsSignin":
           return { error: "Credenciais inválidas." };
         default:
-          return { error: "Algo de errado aconteceu." };
+          return { error: "Revise seus dados e tente novamente." };
       }
     }
-
     throw error;
   }
 };

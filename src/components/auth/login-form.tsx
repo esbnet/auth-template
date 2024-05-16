@@ -46,10 +46,12 @@ export const LoginForm = () => {
 
     startTransition(async () => {
       login(values).then((data) => {
-        console.log("Data dentro do login: ", data);
-        if (data?.error) return;
-        setError(data?.error as string);
-        setSuccess(data?.error as string);
+        console.log("***** DADOS :", data);
+        if (data?.error !== undefined) {
+          setError(data?.error as string);
+        } else if (data?.success !== undefined) {
+          setSuccess(data?.success as string);
+        }
       });
     });
   };
