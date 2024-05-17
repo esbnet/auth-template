@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useTransition } from "react";
-
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-
+import { useSearchParams } from "next/navigation";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 import CardWrapper from "@/src/components/auth/card-wrapper";
 import { FormError } from "@/src/components/auth/form-error";
@@ -28,6 +27,12 @@ import { login } from "@/src/actions/login";
 import { LoginSchema } from "@/src/schemas";
 
 export const LoginForm = () => {
+  const searchParams = useSearchParams();
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Email em uso por um outro provedor"
+      : "";
+
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const [isPending, startTransition] = useTransition();
@@ -46,12 +51,9 @@ export const LoginForm = () => {
 
     startTransition(async () => {
       login(values).then((data) => {
-        console.log("***** DADOS :", data);
-        if (data?.error !== undefined) {
-          setError(data?.error as string);
-        } else if (data?.success !== undefined) {
-          setSuccess(data?.success as string);
-        }
+        setError(data?.error as string);
+        // } else if (data.success !== undefined) {
+        // setSuccess(data.success as string);
       });
     });
   };
@@ -106,7 +108,7 @@ export const LoginForm = () => {
             />
           </div>
 
-          <FormError message={error} />
+          <FormError message={error || urlError} />
           <FormSuccess message={success} />
 
           <Button disabled={isPending} type="submit" className="w-full">
