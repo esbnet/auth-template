@@ -1,9 +1,9 @@
 import { Poppins } from "next/font/google";
 import { PiLockKeyDuotone } from "react-icons/pi";
 
-import LoginButton from "@/src/components/auth/login-button";
-import { Button } from "@/src/components/ui/button";
-import { cn } from "@/src/lib/utils";
+import LoginButton from "@/components/auth/login-button";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
 

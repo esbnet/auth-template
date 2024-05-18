@@ -25,7 +25,7 @@ const LoginButton = ({
   }
 
   return (
-    <span onClick={onClick} className="cursor-pointer" {...{ asChild }}>
+    <span onClick={onClick} className="cursor-pointer">
       {children}
     </span>
   );

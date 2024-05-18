@@ -1,5 +1,5 @@
-import { auth, signOut } from "@/src/auth";
-import { Button } from "@/src/components/ui/button";
+import { auth, signOut } from "@/auth";
+import { Button } from "@/components/ui/button";
 
 const SettingsPage = async () => {
   const session = await auth();
@@ -11,7 +11,7 @@ const SettingsPage = async () => {
       <form
         action={async () => {
           "use server";
-          await signOut();
+          await signOut({ redirectTo: "/auth/login" });
         }}
       >
         <Button type="submit">Sair</Button>
