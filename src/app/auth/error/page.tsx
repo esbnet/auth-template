@@ -1,4 +1,4 @@
-import { ErrorCard } from "@/src/components/auth/error-page";
+import { ErrorCard } from "@/components/auth/error-page";
 
 const AuthErrorPages = () => {
   return <ErrorCard />;

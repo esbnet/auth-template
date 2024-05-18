@@ -2,9 +2,9 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { UserRole } from "@prisma/client";
 import NextAuth from "next-auth";
 
-import authConfig from "@/src/auth.config";
-import { getUserById } from "@/src/data/user";
-import { db } from "@/src/lib/db";
+import authConfig from "@/auth.config";
+import { getUserById } from "@/data/user";
+import { db } from "@/lib/db";
 
 export const {
   handlers: { GET, POST },
@@ -25,11 +25,16 @@ export const {
     },
   },
   callbacks: {
-    // async signIn({ user }) {
-    //   const existingUser = await getUserById(user.id as string);
-    //   if (!existingUser || !existingUser.emailVerified) return false;
-    //   return true;
-    // },
+    async signIn({ user, account }) {
+      if (account?.provider !== "credentials") return true;
+
+      const existingUser = await getUserById(user.id as string);
+      if (!existingUser?.emailVerified) return false;
+
+      // TODO: Add 2FA check
+
+      return true;
+    },
     async session({ session, token }) {
       console.log(token);
       if (token.sub && session.user) {

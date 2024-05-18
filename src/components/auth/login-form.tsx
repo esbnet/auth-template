@@ -6,10 +6,10 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import CardWrapper from "@/src/components/auth/card-wrapper";
-import { FormError } from "@/src/components/auth/form-error";
-import { FormSuccess } from "@/src/components/auth/form-success";
-import { Button } from "@/src/components/ui/button";
+import CardWrapper from "@/components/auth/card-wrapper";
+import { FormError } from "@/components/auth/form-error";
+import { FormSuccess } from "@/components/auth/form-success";
+import { Button } from "@/components/ui/button";
 
 import { ImSpinner3 } from "react-icons/im";
 
@@ -20,11 +20,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/src/components/ui/form";
-import { Input } from "@/src/components/ui/input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
-import { login } from "@/src/actions/login";
-import { LoginSchema } from "@/src/schemas";
+import { login } from "@/actions/login";
+import { LoginSchema } from "@/schemas";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -52,8 +52,7 @@ export const LoginForm = () => {
     startTransition(async () => {
       login(values).then((data) => {
         setError(data?.error as string);
-        // } else if (data.success !== undefined) {
-        // setSuccess(data.success as string);
+        setSuccess(data?.success as string);
       });
     });
   };

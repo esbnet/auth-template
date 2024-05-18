@@ -7,10 +7,10 @@ import * as z from "zod";
 
 import { useForm } from "react-hook-form";
 
-import CardWrapper from "@/src/components/auth/card-wrapper";
-import { FormError } from "@/src/components/auth/form-error";
-import { FormSuccess } from "@/src/components/auth/form-success";
-import { Button } from "@/src/components/ui/button";
+import CardWrapper from "@/components/auth/card-wrapper";
+import { FormError } from "@/components/auth/form-error";
+import { FormSuccess } from "@/components/auth/form-success";
+import { Button } from "@/components/ui/button";
 
 import { ImSpinner3 } from "react-icons/im";
 
@@ -21,11 +21,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/src/components/ui/form";
-import { Input } from "@/src/components/ui/input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
-import { register } from "@/src/actions/register";
-import { RegisterSchema } from "@/src/schemas";
+import { register } from "@/actions/register";
+import { RegisterSchema } from "@/schemas";
 
 export const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>("");
