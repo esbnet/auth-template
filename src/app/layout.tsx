@@ -1,4 +1,6 @@
+import { auth } from "@/auth";
 import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -14,9 +16,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
-    <html lang="pt-br">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <SessionProvider session={session}>
+      <html lang="pt-br">
+        <body className={inter.className}>{children}</body>
+      </html>
+    </SessionProvider>
   );
 }

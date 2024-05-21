@@ -1,21 +1,21 @@
-import { auth, signOut } from "@/auth";
-import { Button } from "@/components/ui/button";
+"use client";
 
-const SettingsPage = async () => {
-  const session = await auth();
+import { logout } from "@/actions/logout";
+import { Button } from "@/components/ui/button";
+import { useCurrentUser } from "@/hooks/use-current-user";
+
+const SettingsPage = () => {
+  const user = useCurrentUser();
+
+  const handleSignOut = () => {
+    logout();
+  };
 
   return (
-    <div>
-      {JSON.stringify(session)}
-
-      <form
-        action={async () => {
-          "use server";
-          await signOut({ redirectTo: "/auth/login" });
-        }}
-      >
-        <Button type="submit">Sair</Button>
-      </form>
+    <div className="bg-white p-10 rounded-xl ">
+      <Button type="submit" onClick={handleSignOut}>
+        Sair
+      </Button>
     </div>
   );
 };

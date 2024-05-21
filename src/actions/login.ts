@@ -49,10 +49,10 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     if (code) {
       const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email);
       if (!twoFactorToken) {
-        return { error: "Código de dois fatores inválido. xxx" };
+        return { error: "Código de dois fatores inválido." };
       }
       if (twoFactorToken.token !== code) {
-        return { error: "Código de dois fatores inválido. zzz" };
+        return { error: "Código de dois fatores inválido." };
       }
 
       const hasExpired = new Date(twoFactorToken.expires) < new Date();
