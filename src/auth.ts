@@ -36,7 +36,6 @@ export const {
       return true;
     },
     async session({ session, token }) {
-      console.log(token);
       if (token.sub && session.user) {
         session.user.id = token.sub;
       }
