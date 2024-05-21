@@ -5,6 +5,7 @@ import NextAuth from "next-auth";
 import authConfig from "@/auth.config";
 import { getUserById } from "@/data/user";
 import { db } from "@/lib/db";
+import { getTwoFactorConfirmationByUserId } from "./data/tow-factor-confirmation";
 
 export const {
   handlers: { GET, POST },
@@ -31,7 +32,17 @@ export const {
       const existingUser = await getUserById(user.id as string);
       if (!existingUser?.emailVerified) return false;
 
-      // TODO: Add 2FA check
+      if (existingUser?.isTwoFactorEnabled) {
+        const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
+          user.id as string
+        );
+
+        if (!twoFactorConfirmation) return false;
+
+        await db.twoFactorConfirmation.delete({
+          where: { userId: user.id },
+        });
+      }
 
       return true;
     },
