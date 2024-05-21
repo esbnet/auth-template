@@ -18,7 +18,6 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const existingUser = await getUserByEmail(email);
-
   if (existingUser) return { error: "Email ja está cadastrado." };
 
   await db.user.create({
