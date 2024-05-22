@@ -20,8 +20,11 @@ export const UserButton = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Avatar className="h-8 w-8">
-          <AvatarImage src={user?.image || ""} />
+        <Avatar>
+          <AvatarImage
+            src={user?.image || ""}
+            className="border-2 border-black border-offset-2"
+          />
           <AvatarFallback className="bg-sky-400">
             <FaUser className="text-white" />
           </AvatarFallback>
